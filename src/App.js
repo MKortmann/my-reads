@@ -1,23 +1,36 @@
 import './App.css'
-import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
+import { NavbarComponent, ShelfComponent } from './components/index'
+import { css } from '@emotion/css'
+import Button from 'react-bootstrap/Button'
 
 function App() {
+	const ShelfNames = ['Currently Reading', 'Want to Read', 'Read']
 	return (
-		<ThemeProvider
-			breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
-			minBreakpoint='xxs'>
-			<Container>
-				<Stack gap={3}>
-					<div className='bg-light border'>First item</div>
-					<div className='bg-light border'>Second item</div>
-					<div className='bg-light border'>Third item</div>
+		<div>
+			<NavbarComponent></NavbarComponent>
+			<Container
+				className={css`
+					margin-top: 25px;
+					margin-bottom: 50px;
+				`}>
+				<Stack gap={4} direction={'vertical'}>
+					{ShelfNames.map((title, index) => {
+						return <ShelfComponent key={index} title={title}></ShelfComponent>
+					})}
 				</Stack>
+				<Button
+					className={css`
+						position: fixed;
+						right: 25px;
+						bottom: 25px;
+					`}>
+					Add
+					<i class='fab fa-android' aria-hidden='true'></i>
+				</Button>
 			</Container>
-		</ThemeProvider>
+		</div>
 	)
 }
 
