@@ -21,16 +21,18 @@ function App() {
 						return <ShelfComponent key={index} title={title}></ShelfComponent>
 					})}
 				</Stack>
-				<Button
+				<div
 					className={css`
 						position: fixed;
 						right: 25px;
 						bottom: 25px;
 					`}>
-					<span>
-						<BsFillPlusSquareFill size='2em' color='#0d6efd;' /> Add
-					</span>
-				</Button>
+					<button className='btn btn-outline-secondary'>
+						{/* <BsFillPlusSquareFill size='3em' color='dimgrey' /> Add */}
+						{/* <BsFillPlusSquareFill size='3em' color='MidnightBlue' /> Add */}
+						<BsFillPlusSquareFill size='3em' color='Teal' /> Add
+					</button>
+				</div>
 				BsFillPlusSquarFill
 			</Container>
 		</div>
