@@ -4,6 +4,7 @@ import Stack from 'react-bootstrap/Stack'
 import { NavbarComponent, ShelfComponent } from './components/index'
 import { css } from '@emotion/css'
 import Button from 'react-bootstrap/Button'
+import { BsFillPlusSquareFill } from 'react-icons/bs'
 
 function App() {
 	const ShelfNames = ['Currently Reading', 'Want to Read', 'Read']
@@ -26,9 +27,11 @@ function App() {
 						right: 25px;
 						bottom: 25px;
 					`}>
-					Add
-					<i class='fab fa-android' aria-hidden='true'></i>
+					<span>
+						<BsFillPlusSquareFill size='2em' color='#0d6efd;' /> Add
+					</span>
 				</Button>
+				BsFillPlusSquarFill
 			</Container>
 		</div>
 	)
