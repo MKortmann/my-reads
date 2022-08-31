@@ -1,7 +1,7 @@
 import './App.css'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
-import { NavbarComponent, ShelfComponent } from './components/index'
+import { NavbarComponent, ShelfComponent, Search } from './components/index'
 import { css } from '@emotion/css'
 import Button from 'react-bootstrap/Button'
 import { BsFillPlusSquareFill } from 'react-icons/bs'
@@ -11,6 +11,7 @@ function App() {
 	return (
 		<div>
 			<NavbarComponent></NavbarComponent>
+			<Search></Search>
 			<Container
 				className={css`
 					margin-top: 25px;
@@ -27,13 +28,10 @@ function App() {
 						right: 25px;
 						bottom: 25px;
 					`}>
-					<button className='btn btn-outline-secondary'>
-						{/* <BsFillPlusSquareFill size='3em' color='dimgrey' /> Add */}
-						{/* <BsFillPlusSquareFill size='3em' color='MidnightBlue' /> Add */}
-						<BsFillPlusSquareFill size='3em' color='Teal' /> Add
-					</button>
+					<Button>
+						<BsFillPlusSquareFill size='3em' /> <strong>Add</strong>
+					</Button>
 				</div>
-				BsFillPlusSquarFill
 			</Container>
 		</div>
 	)
