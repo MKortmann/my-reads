@@ -1,38 +1,27 @@
 import './App.css'
-import Container from 'react-bootstrap/Container'
-import Stack from 'react-bootstrap/Stack'
-import { NavbarComponent, ShelfComponent, Search } from './components/index'
-import { css } from '@emotion/css'
-import Button from 'react-bootstrap/Button'
-import { BsFillPlusSquareFill } from 'react-icons/bs'
+import { Routes, Route } from 'react-router-dom'
+
+import {
+	NavbarComponent,
+	Search,
+	About,
+	SubNav,
+	Home,
+	NotFound,
+} from './components/index'
 
 function App() {
-	const ShelfNames = ['Currently Reading', 'Want to Read', 'Read']
 	return (
 		<div>
 			<NavbarComponent></NavbarComponent>
-			<Search></Search>
-			<Container
-				className={css`
-					margin-top: 25px;
-					margin-bottom: 50px;
-				`}>
-				<Stack gap={4} direction={'vertical'}>
-					{ShelfNames.map((title, index) => {
-						return <ShelfComponent key={index} title={title}></ShelfComponent>
-					})}
-				</Stack>
-				<div
-					className={css`
-						position: fixed;
-						right: 25px;
-						bottom: 25px;
-					`}>
-					<Button>
-						<BsFillPlusSquareFill size='3em' /> <strong>Add</strong>
-					</Button>
-				</div>
-			</Container>
+			<SubNav></SubNav>
+			<Routes>
+				<Route path='/' element={<Home></Home>} />
+				<Route path='/home' element={<Home></Home>} />
+				<Route path='/search' element={<Search></Search>} />
+				<Route path='/about' element={<About></About>} />
+				<Route path='*' element={<NotFound></NotFound>} />
+			</Routes>
 		</div>
 	)
 }
