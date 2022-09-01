@@ -1,5 +1,5 @@
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import { Menu } from '../index'
 
 export const BookComponent = () => {
 	return (
@@ -8,7 +8,7 @@ export const BookComponent = () => {
 			<Card.Body>
 				<Card.Title>Book Name</Card.Title>
 				<Card.Text>Author</Card.Text>
-				<Button variant='primary'>move</Button>
+				<Menu title={'move'}></Menu>
 			</Card.Body>
 		</Card>
 	)
