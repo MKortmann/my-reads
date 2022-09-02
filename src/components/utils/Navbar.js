@@ -12,22 +12,18 @@ export const NavbarComponent = () => {
 						to='/home'
 						className={css`
 							text-decoration: none;
+							font-size: 30px;
+							margin: 10px;
+							color: white;
 						`}>
-						<Navbar.Brand
-							href='#home'
-							className={css`
-								font-size: 30px;
-								margin: 10px;
-							`}>
-							<img
-								alt='mk.svg'
-								src='/mk.svg'
-								width='45'
-								height='45'
-								className='d-inline-block align-top'
-							/>{' '}
-							My Reads
-						</Navbar.Brand>
+						<img
+							alt='mk.svg'
+							src='/mk.svg'
+							width='45'
+							height='45'
+							className='d-inline-block align-top'
+						/>{' '}
+						My Reads
 					</NavLink>
 				</Container>
 			</Navbar>
