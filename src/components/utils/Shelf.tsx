@@ -1,11 +1,16 @@
-import { BookComponent } from '../index.js'
+import React from 'react'
+import { BookComponent } from '../index'
 import Accordion from 'react-bootstrap/Accordion'
 import Row from 'react-bootstrap/Row'
-import { css } from '@emotion/css'
 
-export const ShelfComponent = ({ title, books }) => {
+interface Props {
+	title: string
+	books: any
+}
+
+export const ShelfComponent: React.FC<Props> = ({ title, books }) => {
 	const shelf =
-		title.slice(0, 1).toLowerCase() + title.replaceAll(' ', '').substring(1)
+		title.slice(0, 1).toLowerCase() + title.replace(/ /g, '').substring(1)
 
 	console.log(shelf)
 	return (
@@ -17,12 +22,13 @@ export const ShelfComponent = ({ title, books }) => {
 				<Accordion.Body>
 					<Row xs={1} md={2} className='justify-content-md-center'>
 						{books
-							.filter((book) => book.shelf === shelf)
-							.map((_, index) => {
+							.filter((book: any) => book.shelf === shelf)
+							.map((book: any, index: number) => {
 								return (
 									<BookComponent
 										key={index}
-										title={title}
+										title={book.title}
+										authors={book.authors}
 										md={2}></BookComponent>
 								)
 							})}
