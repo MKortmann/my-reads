@@ -11,6 +11,10 @@ export const SubNav = () => {
 		<Nav
 			className={css`
 				margin: 20px;
+				:hover {
+					color: blue;
+					font-size: 20px;
+				}
 			`}
 			fill
 			variant='primary'
@@ -68,6 +72,10 @@ export const SubNav = () => {
 				<AiFillCaretRight
 					className={css`
 						cursor: pointer;
+						:hover {
+							color: blue;
+							font-size: 20px;
+						}
 					`}
 					size='2em'
 					onClick={() => navigate(1)}

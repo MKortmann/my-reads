@@ -3,7 +3,11 @@ import Accordion from 'react-bootstrap/Accordion'
 import Row from 'react-bootstrap/Row'
 import { css } from '@emotion/css'
 
-export const ShelfComponent = ({ title }) => {
+export const ShelfComponent = ({ title, books }) => {
+	const shelf =
+		title.slice(0, 1).toLowerCase() + title.replaceAll(' ', '').substring(1)
+
+	console.log(shelf)
 	return (
 		<Accordion defaultActiveKey='0' className='text-center'>
 			<Accordion.Item eventKey='0'>
@@ -12,14 +16,16 @@ export const ShelfComponent = ({ title }) => {
 				</Accordion.Header>
 				<Accordion.Body>
 					<Row xs={1} md={2} className='justify-content-md-center'>
-						<BookComponent title={title} md={2}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
-						<BookComponent title={title}></BookComponent>
+						{books
+							.filter((book) => book.shelf === shelf)
+							.map((_, index) => {
+								return (
+									<BookComponent
+										key={index}
+										title={title}
+										md={2}></BookComponent>
+								)
+							})}
 					</Row>
 				</Accordion.Body>
 			</Accordion.Item>
