@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
-import { BiArrowBack } from 'react-icons/bi'
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs'
 
 import { Link } from 'react-router-dom'
@@ -34,9 +33,14 @@ export const Search = () => {
 				<Col xs={11}>
 					<FloatingLabel
 						controlId='floatingInput'
-						label='Search Book'
+						label='Search Book by title, author, or ISBN'
 						className='mb-3'>
-						<Form.Control type='text' />
+						<Form.Control
+							type='text'
+							onChange={(event) => {
+								console.log(event.target.value)
+							}}
+						/>
 					</FloatingLabel>
 				</Col>
 			</Row>

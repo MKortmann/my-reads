@@ -1,8 +1,11 @@
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
 import { css } from '@emotion/css'
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import {
+	BsFillArrowLeftSquareFill,
+	BsFillArrowRightSquareFill,
+} from 'react-icons/bs'
 
 export const SubNav = () => {
 	const navigate = useNavigate()
@@ -16,15 +19,14 @@ export const SubNav = () => {
 			activeKey='/home'
 			onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
 			<Nav.Item>
-				<AiFillCaretLeft
+				<BsFillArrowLeftSquareFill
 					className={css`
 						cursor: pointer;
 						:hover {
 							color: blue;
-							font-size: 22px;
 						}
 					`}
-					size='2em'
+					size='3em'
 					onClick={() => navigate(-1)}
 				/>
 			</Nav.Item>
@@ -80,15 +82,14 @@ export const SubNav = () => {
 				</NavLink>
 			</Nav.Item>
 			<Nav.Item>
-				<AiFillCaretRight
+				<BsFillArrowRightSquareFill
 					className={css`
 						cursor: pointer;
 						:hover {
 							color: blue;
-							font-size: 18px;
 						}
 					`}
-					size='2em'
+					size='3em'
 					onClick={() => navigate(1)}
 				/>
 			</Nav.Item>
