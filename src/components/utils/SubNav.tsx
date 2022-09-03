@@ -1,6 +1,5 @@
-import React from 'react'
 import Nav from 'react-bootstrap/Nav'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { css } from '@emotion/css'
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
