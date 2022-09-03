@@ -2,13 +2,14 @@ import React from 'react'
 import { BookComponent } from '../index'
 import Accordion from 'react-bootstrap/Accordion'
 import Row from 'react-bootstrap/Row'
+import { Book } from '../../types'
 
 interface Props {
 	title: string
-	books: any
+	books: Book[]
 }
 
-export const ShelfComponent: React.FC<Props> = ({ title, books }) => {
+export const Shelf: React.FC<Props> = ({ title, books }) => {
 	const shelf =
 		title.slice(0, 1).toLowerCase() + title.replace(/ /g, '').substring(1)
 
@@ -29,6 +30,8 @@ export const ShelfComponent: React.FC<Props> = ({ title, books }) => {
 										key={index}
 										title={book.title}
 										authors={book.authors}
+										img={book.imageLinks.smallThumbnail}
+										shelf={book.shelf}
 										md={2}></BookComponent>
 								)
 							})}

@@ -1,6 +1,6 @@
 export { NavbarComponent } from './utils/Navbar'
-export { ShelfComponent } from './utils/Shelf'
-export { BookComponent } from './utils/Book'
+export { Shelf } from './utils/Shelf'
+export { Book as BookComponent } from './utils/Book'
 export { SubNav } from './utils/SubNav'
 export { AddButton } from './utils/AddButton'
 export { Menu } from './utils/Menu'
