@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Stack from 'react-bootstrap/Stack'
 import { css } from '@emotion/css'
-import { getAll } from '../../API/BooksAPI'
+import { getAll, get, update } from '../../API/BooksAPI'
 import { AddButton, Shelf } from '../index'
 import { Book } from '../../types'
 
@@ -14,7 +14,21 @@ export const Home = () => {
 	useEffect(() => {
 		getAll().then((books) => setBooks(books))
 	}, [])
-	console.log(books)
+
+	const changeShelf = (id: number, shelf: string, newShelf: string) => {
+		const book = books.filter((book) => book.id === id)
+
+		if (shelf !== newShelf) {
+			update(book[0], newShelf).then(() => {
+				getAll().then((books) => {
+					setBooks(books)
+				})
+			})
+			console.log({ shelf: newShelf })
+		} else {
+			alert(`the book is already on this ${shelf} shelf`)
+		}
+	}
 
 	return (
 		<Container
@@ -24,7 +38,13 @@ export const Home = () => {
 			`}>
 			<Stack gap={4} direction={'vertical'}>
 				{ShelfNames.map((title, index) => {
-					return <Shelf key={index} title={title} books={books}></Shelf>
+					return (
+						<Shelf
+							key={index}
+							title={title}
+							books={books}
+							changeShelf={changeShelf}></Shelf>
+					)
 				})}
 			</Stack>
 			<AddButton></AddButton>

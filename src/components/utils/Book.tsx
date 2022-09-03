@@ -10,9 +10,18 @@ interface Props {
 	authors: string[]
 	img: string
 	shelf: string
+	changeShelf: any
+	id: number
 }
 
-export const Book: React.FC<Props> = ({ title, authors, img, shelf }) => {
+export const Book: React.FC<Props> = ({
+	title,
+	authors,
+	img,
+	shelf,
+	changeShelf,
+	id,
+}) => {
 	return (
 		<Card style={{ width: '16rem', margin: '10px', marginBottom: '0' }}>
 			<Card.Img
@@ -37,7 +46,7 @@ export const Book: React.FC<Props> = ({ title, authors, img, shelf }) => {
 						top: 0;
 						right: 0;
 					`}>
-					<Menu title={'move'} shelf={shelf}></Menu>
+					<Menu shelf={shelf} changeShelf={changeShelf} id={id}></Menu>
 				</div>
 			</Card.Body>
 		</Card>

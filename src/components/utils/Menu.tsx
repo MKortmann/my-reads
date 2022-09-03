@@ -3,11 +3,12 @@ import { DropdownButton, Dropdown } from 'react-bootstrap'
 import { css } from '@emotion/css'
 
 interface Props {
-	title: string
 	shelf: string
+	changeShelf: any
+	id: number
 }
 
-export const Menu: React.FC<Props> = ({ title, shelf }) => {
+export const Menu: React.FC<Props> = ({ shelf, changeShelf, id }) => {
 	return (
 		<DropdownButton
 			title={''}
@@ -15,20 +16,24 @@ export const Menu: React.FC<Props> = ({ title, shelf }) => {
 				font-size: 30px;
 			`}>
 			<Dropdown.Item
-				onClick={() => alert('clicked')}
+				onClick={() => changeShelf(id, shelf, 'currentlyReading')}
 				active={shelf === 'currentlyReading'}>
 				Currently Reading
 			</Dropdown.Item>
 			<Dropdown.Item
-				onClick={() => alert('clicked')}
+				onClick={() => changeShelf(id, shelf, 'wantToRead')}
 				active={shelf === 'wantToRead'}>
 				Want to Read
 			</Dropdown.Item>
-			<Dropdown.Item onClick={() => alert('clicked')} active={shelf === 'read'}>
+			<Dropdown.Item
+				onClick={() => changeShelf(id, shelf, 'read')}
+				active={shelf === 'read'}>
 				Read
 			</Dropdown.Item>
 			<Dropdown.Divider />
-			<Dropdown.Item onClick={() => alert('clicked')} active={shelf === 'none'}>
+			<Dropdown.Item
+				onClick={() => changeShelf(id, shelf, 'none')}
+				active={shelf === 'none'}>
 				None
 			</Dropdown.Item>
 		</DropdownButton>

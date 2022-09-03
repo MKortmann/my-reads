@@ -3,4 +3,5 @@ export interface Book {
 	authors: string[]
 	img: string
 	shelf: string
+	id: number
 }

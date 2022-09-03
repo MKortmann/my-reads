@@ -7,9 +7,10 @@ import { Book } from '../../types'
 interface Props {
 	title: string
 	books: Book[]
+	changeShelf: any
 }
 
-export const Shelf: React.FC<Props> = ({ title, books }) => {
+export const Shelf: React.FC<Props> = ({ title, books, changeShelf }) => {
 	const shelf =
 		title.slice(0, 1).toLowerCase() + title.replace(/ /g, '').substring(1)
 
@@ -32,7 +33,9 @@ export const Shelf: React.FC<Props> = ({ title, books }) => {
 										authors={book.authors}
 										img={book.imageLinks.smallThumbnail}
 										shelf={book.shelf}
-										md={2}></BookComponent>
+										md={2}
+										id={book.id}
+										changeShelf={changeShelf}></BookComponent>
 								)
 							})}
 					</Row>
