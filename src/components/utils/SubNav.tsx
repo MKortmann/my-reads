@@ -11,10 +11,6 @@ export const SubNav = () => {
 		<Nav
 			className={css`
 				margin: 20px;
-				:hover {
-					color: blue;
-					font-size: 20px;
-				}
 			`}
 			fill
 			variant='primary'
@@ -24,6 +20,10 @@ export const SubNav = () => {
 				<AiFillCaretLeft
 					className={css`
 						cursor: pointer;
+						:hover {
+							color: blue;
+							font-size: 22px;
+						}
 					`}
 					size='2em'
 					onClick={() => navigate(-1)}
@@ -34,6 +34,10 @@ export const SubNav = () => {
 					className={css`
 						text-decoration: none;
 						font-size: 20px;
+						:hover {
+							color: blue;
+							font-size: 22px;
+						}
 					`}
 					to='/home'
 					style={({ isActive }) => ({
@@ -47,6 +51,10 @@ export const SubNav = () => {
 					className={css`
 						text-decoration: none;
 						font-size: 20px;
+						:hover {
+							color: blue;
+							font-size: 22px;
+						}
 					`}
 					to='/search'
 					style={({ isActive }) => ({
@@ -60,6 +68,10 @@ export const SubNav = () => {
 					className={css`
 						text-decoration: none;
 						font-size: 20px;
+						:hover {
+							color: blue;
+							font-size: 22px;
+						}
 					`}
 					to='/about'
 					style={({ isActive }) => ({
@@ -74,7 +86,7 @@ export const SubNav = () => {
 						cursor: pointer;
 						:hover {
 							color: blue;
-							font-size: 20px;
+							font-size: 18px;
 						}
 					`}
 					size='2em'
