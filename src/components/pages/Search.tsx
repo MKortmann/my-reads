@@ -26,6 +26,8 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 				const tmp = newBooks.error !== 'empty query' ? [...newBooks] : []
 				return setNewBooks([...tmp])
 			})
+		} else {
+			setNewBooks([])
 		}
 	}
 
