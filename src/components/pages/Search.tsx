@@ -27,7 +27,9 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 				return setNewBooks([...tmp])
 			})
 		} else {
-			setNewBooks([])
+			setTimeout(() => {
+				setNewBooks([])
+			}, 1000)
 		}
 	}
 
