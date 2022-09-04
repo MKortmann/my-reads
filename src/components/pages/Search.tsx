@@ -31,7 +31,7 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 		} else {
 			setTimeout(() => {
 				setNewBooks([])
-			}, 300)
+			}, 1000)
 		}
 	}
 
