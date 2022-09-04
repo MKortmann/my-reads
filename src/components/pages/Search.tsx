@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { search } from '../../API/BooksAPI'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -8,12 +9,25 @@ import { BsFillArrowLeftSquareFill } from 'react-icons/bs'
 
 import { Link } from 'react-router-dom'
 import { css } from '@emotion/css'
+import { Book } from '../../types'
+import { BookComponent } from '../index'
 
-export const Search = () => {
-	search('car', 10).then((books) => console.log(books))
+interface Props {
+	changeShelf: any
+}
+
+export const Search: React.FC<Props> = ({ changeShelf }) => {
+	const [books, setBooks] = useState<Book[]>([])
+
+	const searchBook = (value: string) => {
+		search(value).then((books) => setBooks(books))
+	}
 
 	return (
-		<Container className='mt-5'>
+		<Container
+			className={css`
+				margin-top: 30px;
+			`}>
 			<Row>
 				<Col xs='auto'>
 					<Link to='/home'>
@@ -38,11 +52,30 @@ export const Search = () => {
 						<Form.Control
 							type='text'
 							onChange={(event) => {
-								console.log(event.target.value)
+								searchBook(event.target.value)
 							}}
 						/>
 					</FloatingLabel>
 				</Col>
+			</Row>
+
+			<Row
+				className={css`
+					justify-content: center;
+				`}>
+				{books.map((book, index) => {
+					return (
+						<BookComponent
+							key={index}
+							title={book.title}
+							authors={book.authors}
+							img={book.imageLinks?.smallThumbnail}
+							shelf={'none'}
+							md={2}
+							id={book.id}
+							changeShelf={changeShelf}></BookComponent>
+					)
+				})}
 			</Row>
 		</Container>
 	)

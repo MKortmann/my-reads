@@ -4,4 +4,5 @@ export interface Book {
 	img: string
 	shelf: string
 	id: number
+	imageLinks: any
 }

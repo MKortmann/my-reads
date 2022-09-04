@@ -36,9 +36,9 @@ export const Book: React.FC<Props> = ({
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>
 				<Card.Text>
-					{authors.map((author, index) =>
-						authors.length === 1 ? author : `${author}, `
-					)}
+					{authors?.map((author) => {
+						return authors?.length === 1 ? author : `${author}, `
+					})}
 				</Card.Text>
 				<div
 					className={css`
