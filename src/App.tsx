@@ -12,7 +12,7 @@ import {
 } from './components/index'
 
 import { Book } from './types'
-import { getAll, update } from './API/BooksAPI'
+import { getAll, update, get } from './API/BooksAPI'
 import Alert from 'react-bootstrap/Alert'
 
 function App() {
@@ -26,13 +26,19 @@ function App() {
 	const changeShelf = (id: number, shelf: string, newShelf: string) => {
 		const book = books.filter((book) => book.id === id)
 
-		//array is empty if the book is not already in the library
-
-		if (shelf !== newShelf) {
+		if (shelf !== newShelf && shelf !== 'none') {
 			update(book[0], newShelf).then(() => {
 				getAll().then((books: Array<Book>) => {
 					setBooks(books)
 					message(setAlert, 'info', `The book ${book[0].title} changed shelf!`)
+				})
+			})
+		} else if (shelf === 'none') {
+			get(id).then((book) => {
+				update(book, newShelf).then(() => {
+					getAll().then((books: Array<Book>) => {
+						setBooks(books)
+					})
 				})
 			})
 		} else {

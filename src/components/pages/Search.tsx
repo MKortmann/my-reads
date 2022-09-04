@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { search } from '../../API/BooksAPI'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -23,7 +23,8 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 	const searchBook = (value: string) => {
 		if (value !== '') {
 			search(value).then((newBooks) => {
-				return setNewBooks(newBooks)
+				const tmp = newBooks.error !== 'empty query' ? [...newBooks] : []
+				return setNewBooks([...tmp])
 			})
 		}
 	}
@@ -72,7 +73,6 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 					{newBooks.map((newBook, index) => {
 						for (let book of books) {
 							newBook['shelf'] = book.id === newBook.id ? book.shelf : 'none'
-							break
 						}
 
 						return (
