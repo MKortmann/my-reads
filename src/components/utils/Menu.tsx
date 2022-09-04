@@ -4,7 +4,7 @@ import { css } from '@emotion/css'
 
 interface Props {
 	shelf: string
-	changeShelf: any
+	changeShelf: (id: number, shelf: string, newShelf: string) => void
 	id: number
 }
 

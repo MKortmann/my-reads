@@ -3,11 +3,11 @@ import Stack from 'react-bootstrap/Stack'
 import { css } from '@emotion/css'
 
 import { AddButton, Shelf } from '../index'
-import { Book } from '../../types'
+import { Book } from '../../types/types'
 
 interface Props {
 	books: Book[]
-	changeShelf: any
+	changeShelf: (id: number, shelf: string, newShelf: string) => void
 }
 
 export const Home: React.FC<Props> = ({ books, changeShelf }) => {

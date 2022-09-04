@@ -2,12 +2,12 @@ import React from 'react'
 import { BookComponent } from '../index'
 import Accordion from 'react-bootstrap/Accordion'
 import Row from 'react-bootstrap/Row'
-import { Book } from '../../types'
+import { Book } from '../../types/types'
 
 interface Props {
 	title: string
 	books: Book[]
-	changeShelf: any
+	changeShelf: (id: number, shelf: string, newShelf: string) => void
 }
 
 export const Shelf: React.FC<Props> = ({ title, books, changeShelf }) => {

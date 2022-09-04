@@ -1,14 +1,17 @@
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
-import { css } from '@emotion/css'
+import { css, cx } from '@emotion/css'
 import { useNavigate } from 'react-router-dom'
 import {
 	BsFillArrowLeftSquareFill,
 	BsFillArrowRightSquareFill,
 } from 'react-icons/bs'
 
+import { subNavStyles } from '../../styles/styles'
+
 export const SubNav = () => {
 	const navigate = useNavigate()
+	const style = subNavStyles()
 	return (
 		<Nav
 			className={css`
@@ -16,30 +19,18 @@ export const SubNav = () => {
 			`}
 			fill
 			variant='primary'
-			activeKey='/home'
+			activeKey={'/home'}
 			onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
 			<Nav.Item>
 				<BsFillArrowLeftSquareFill
-					className={css`
-						cursor: pointer;
-						:hover {
-							color: blue;
-						}
-					`}
+					className={cx(style.linkIcon)}
 					size='3em'
 					onClick={() => navigate(-1)}
 				/>
 			</Nav.Item>
 			<Nav.Item>
 				<NavLink
-					className={css`
-						text-decoration: none;
-						font-size: 20px;
-						:hover {
-							color: blue;
-							font-size: 22px;
-						}
-					`}
+					className={cx(style.link)}
 					to='/home'
 					style={({ isActive }) => ({
 						color: isActive ? 'blue' : 'black',
@@ -49,14 +40,7 @@ export const SubNav = () => {
 			</Nav.Item>
 			<Nav.Item>
 				<NavLink
-					className={css`
-						text-decoration: none;
-						font-size: 20px;
-						:hover {
-							color: blue;
-							font-size: 22px;
-						}
-					`}
+					className={cx(style.link)}
 					to='/search'
 					style={({ isActive }) => ({
 						color: isActive ? 'blue' : 'black',
@@ -66,14 +50,7 @@ export const SubNav = () => {
 			</Nav.Item>
 			<Nav.Item>
 				<NavLink
-					className={css`
-						text-decoration: none;
-						font-size: 20px;
-						:hover {
-							color: blue;
-							font-size: 22px;
-						}
-					`}
+					className={cx(style.link)}
 					to='/about'
 					style={({ isActive }) => ({
 						color: isActive ? 'blue' : 'black',
@@ -83,12 +60,7 @@ export const SubNav = () => {
 			</Nav.Item>
 			<Nav.Item>
 				<BsFillArrowRightSquareFill
-					className={css`
-						cursor: pointer;
-						:hover {
-							color: blue;
-						}
-					`}
+					className={cx(style.linkIcon)}
 					size='3em'
 					onClick={() => navigate(1)}
 				/>

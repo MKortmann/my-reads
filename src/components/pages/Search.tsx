@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { search } from '../../API/BooksAPI'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -8,9 +8,10 @@ import Form from 'react-bootstrap/Form'
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs'
 
 import { Link } from 'react-router-dom'
-import { css } from '@emotion/css'
-import { Book } from '../../types'
+import { css, cx } from '@emotion/css'
+import { Book } from '../../types/types'
 import { BookComponent } from '../index'
+import { searchStyles } from '../../styles/styles'
 
 interface Props {
 	changeShelf: any
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export const Search: React.FC<Props> = ({ changeShelf, books }) => {
+	const style = searchStyles()
 	const [newBooks, setNewBooks] = useState<Book[]>([])
 
 	const searchBook = (value: string) => {
@@ -42,15 +44,7 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 				<Col xs='auto'>
 					<Link to='/home'>
 						<BsFillArrowLeftSquareFill
-							className={css`
-								cursor: pointer;
-								display: flex
-								align-items: center
-								:hover {
-									color: blue;
-									font-size: 2.2em;
-								}
-							`}
+							className={cx(style.icon)}
 							size='3.3em'></BsFillArrowLeftSquareFill>
 					</Link>
 				</Col>

@@ -2,15 +2,16 @@ import React from 'react'
 
 import Card from 'react-bootstrap/Card'
 import { Menu } from '../index'
-import { css } from '@emotion/css'
+import { cx } from '@emotion/css'
+import { bookStyles } from '../../styles/styles'
 
 interface Props {
 	title: string
-	md: any
+	md: number
 	authors: string[]
 	img: string
 	shelf: string
-	changeShelf: any
+	changeShelf: (id: number, shelf: string, newShelf: string) => void
 	id: number
 }
 
@@ -22,17 +23,10 @@ export const Book: React.FC<Props> = ({
 	changeShelf,
 	id,
 }) => {
+	const style = bookStyles()
 	return (
-		<Card style={{ width: '16rem', margin: '10px', marginBottom: '0' }}>
-			<Card.Img
-				variant='top'
-				src={img}
-				className={css`
-					width: 50%;
-					height: 7vw;
-					margin: auto;
-				`}
-			/>
+		<Card className={cx(style.card)}>
+			<Card.Img variant='top' src={img} className={cx(style.cardImg)} />
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>
 				<Card.Text>
@@ -40,12 +34,7 @@ export const Book: React.FC<Props> = ({
 						return authors?.length === 1 ? author : `${author}, `
 					})}
 				</Card.Text>
-				<div
-					className={css`
-						position: absolute;
-						top: 0;
-						right: 0;
-					`}>
+				<div className={cx(style.menu)}>
 					<Menu shelf={shelf} changeShelf={changeShelf} id={id}></Menu>
 				</div>
 			</Card.Body>

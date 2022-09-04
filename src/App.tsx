@@ -11,7 +11,7 @@ import {
 	NotFound,
 } from './components/index'
 
-import { Book } from './types'
+import { Book } from './types/types'
 import { getAll, update, get } from './API/BooksAPI'
 import Alert from 'react-bootstrap/Alert'
 
@@ -50,15 +50,16 @@ function App() {
 			<NavbarComponent></NavbarComponent>
 			<SubNav></SubNav>
 			{alert[0] && <Alert variant={alert[1]}>{alert[2]}</Alert>}
+
 			<Routes>
-				<Route
-					path='/'
-					element={<Home books={books} changeShelf={changeShelf}></Home>}
-				/>
-				<Route
-					path='/home'
-					element={<Home books={books} changeShelf={changeShelf}></Home>}
-				/>
+				{['/', '/home'].map((path, index) => (
+					<Route
+						key={index}
+						path={path}
+						element={<Home books={books} changeShelf={changeShelf}></Home>}
+					/>
+				))}
+
 				<Route
 					path='/search'
 					element={<Search books={books} changeShelf={changeShelf}></Search>}
