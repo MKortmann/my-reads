@@ -26,6 +26,8 @@ function App() {
 	const changeShelf = (id: number, shelf: string, newShelf: string) => {
 		const book = books.filter((book) => book.id === id)
 
+		//array is empty if the book is not already in the library
+
 		if (shelf !== newShelf) {
 			update(book[0], newShelf).then(() => {
 				getAll().then((books: Array<Book>) => {
@@ -53,7 +55,7 @@ function App() {
 				/>
 				<Route
 					path='/search'
-					element={<Search changeShelf={() => changeShelf}></Search>}
+					element={<Search books={books} changeShelf={changeShelf}></Search>}
 				/>
 				<Route path='/about' element={<About></About>} />
 				<Route path='*' element={<NotFound></NotFound>} />

@@ -14,13 +14,18 @@ import { BookComponent } from '../index'
 
 interface Props {
 	changeShelf: any
+	books: Book[]
 }
 
-export const Search: React.FC<Props> = ({ changeShelf }) => {
-	const [books, setBooks] = useState<Book[]>([])
+export const Search: React.FC<Props> = ({ changeShelf, books }) => {
+	const [newBooks, setNewBooks] = useState<Book[]>([])
 
 	const searchBook = (value: string) => {
-		search(value).then((books) => setBooks(books))
+		if (value !== '') {
+			search(value).then((newBooks) => {
+				return setNewBooks(newBooks)
+			})
+		}
 	}
 
 	return (
@@ -59,24 +64,31 @@ export const Search: React.FC<Props> = ({ changeShelf }) => {
 				</Col>
 			</Row>
 
-			<Row
-				className={css`
-					justify-content: center;
-				`}>
-				{books.map((book, index) => {
-					return (
-						<BookComponent
-							key={index}
-							title={book.title}
-							authors={book.authors}
-							img={book.imageLinks?.smallThumbnail}
-							shelf={'none'}
-							md={2}
-							id={book.id}
-							changeShelf={changeShelf}></BookComponent>
-					)
-				})}
-			</Row>
+			{newBooks.length > 0 && (
+				<Row
+					className={css`
+						justify-content: center;
+					`}>
+					{newBooks.map((newBook, index) => {
+						for (let book of books) {
+							newBook['shelf'] = book.id === newBook.id ? book.shelf : 'none'
+							break
+						}
+
+						return (
+							<BookComponent
+								key={index}
+								title={newBook.title}
+								authors={newBook.authors}
+								img={newBook.imageLinks?.smallThumbnail}
+								shelf={newBook.shelf}
+								md={2}
+								id={newBook.id}
+								changeShelf={changeShelf}></BookComponent>
+						)
+					})}
+				</Row>
+			)}
 		</Container>
 	)
 }
