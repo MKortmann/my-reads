@@ -30,10 +30,7 @@ The app enclosed three shelves:
     the Search Page. The Browser URL corresponds with the actual displayed page.
   - The About Page informs about the limitation terms of the BooksAPI.
 
-## How to start the App?
-
-To use the app, please, click in the link below:
-https://mkortmann.github.io/my-reads/
+## How to install the App?
 
 To install the App, please, follow the instructions at Installation section.
 
