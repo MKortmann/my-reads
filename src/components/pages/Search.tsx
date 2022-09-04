@@ -29,7 +29,7 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 		} else {
 			setTimeout(() => {
 				setNewBooks([])
-			}, 1000)
+			}, 300)
 		}
 	}
 
@@ -76,7 +76,10 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 					`}>
 					{newBooks.map((newBook, index) => {
 						for (let book of books) {
-							newBook['shelf'] = book.id === newBook.id ? book.shelf : 'none'
+							if (book.id === newBook.id) {
+								newBook['shelf'] = book.shelf
+								break
+							}
 						}
 
 						return (
@@ -85,7 +88,7 @@ export const Search: React.FC<Props> = ({ changeShelf, books }) => {
 								title={newBook.title}
 								authors={newBook.authors}
 								img={newBook.imageLinks?.smallThumbnail}
-								shelf={newBook.shelf}
+								shelf={newBook?.shelf || 'none'}
 								md={2}
 								id={newBook.id}
 								changeShelf={changeShelf}></BookComponent>
