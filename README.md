@@ -1,70 +1,120 @@
-# My Reads: A Book Tracking App
+# MyReads App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The App is basically a virtual bookcase used to store your books an track what
+you are reading.
+It was developed from **scratch** using React Library (create-react-app) with some extras:
 
-## Available Scripts
+- [`Added Typescript`](https://create-react-app.dev/docs/adding-typescript/)
+- [`React Router`](https://reactrouter.com/en/v6.3.0/api#browserrouter)
+- [`Bootstrap`](https://react-bootstrap.github.io/getting-started/introduction/)
+- [`React Icons`](https://react-icons.github.io/react-icons/)
 
-In the project directory, you can run:
+The app enclosed three shelves:
 
-### `npm start`
+- **The App contains 3 shelves for stored the books**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - Currently Reading
+  - Want To Read
+  - Read
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **The Search Page**
 
-### `npm test`
+  - This search page allows the user to search for a specific books. The founded
+    books is also identified if it is already in the user library shelf or not. At this
+    page the user can directly manage the books and see in real time the results.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Extras**
+  - The main page link to the search and about page.
+  - All the pages are linked with each other through the navbar!
+  - The users can easily move books from one shelf to another. It works also in
+    the Search Page. The Browser URL corresponds with the actual displayed page.
+  - The About Page informs about the limitation terms of the BooksAPI.
 
-### `npm run build`
+## How to start the App?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To use the app, please, click in the link below:
+https://mkortmann.github.io/my-reads/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To install the App, please, follow the instructions at Installation section.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+1. First you have to create a directory in the desire location
+2. git clone `ADD HERE GITHUB PROJECT LINK`
+3. install all project dependencies with `npm install`
+4. start the development server with `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Backend Server
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To simplify the process I used a backend server. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods used to perform necessary operations on the backend:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [`get`](#get)
+- [`getAll`](#getall)
+- [`update`](#update)
+- [`search`](#search)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `get`
 
-## Learn More
+Method Signature:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+get(bookId)
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- bookId: `<String>` book id
+- Returns a Promise which resolves to a JSON object containing the book requested
 
-### Code Splitting
+### `getAll`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Method Signature:
 
-### Analyzing the Bundle Size
+```js
+getAll()
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Returns a Promise which resolves to a JSON object containing a collection of book objects.
+- This collection represents the books currently in the bookshelves in your app.
+- A promise that resolves into an array of books. Each book is an object.
 
-### Making a Progressive Web App
+### `update`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Method Signature:
 
-### Advanced Configuration
+```js
+update(book, shelf)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- book: `<Object>` containing at minimum an `id` attribute
+- shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
+- Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-### Deployment
+### `search`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Method Signature:
 
-### `npm run build` fails to minify
+```js
+search(query)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- query: `<String>`
+- Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
+- These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+
+## Important
+
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+
+#### Note about React
+
+The app was created used npx create-react-app! I started from scratch. However, I am using
+the Udacity BookAPI to fetch and update the books. The API is limited to a number of
+78 terms.
+
+### More Information
+
+This project is part of Udacity Nanodegree React. It has the main objective to practice and show my knowledge in React!
+--For any extra information, please, feel free to contact me.
+
+### Contributions
+
+The project was done completely by me starting from scratch. However, if you want to contribute, please, do not hesitate to contact me!
